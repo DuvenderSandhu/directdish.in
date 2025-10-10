@@ -213,10 +213,25 @@
       border-radius: 10px;
       width: 100%;
       cursor: pointer;
+      margin-bottom: 0.5rem;
     }
 
     #customer-form button:hover {
       background: #e55a50;
+    }
+
+    #close-cart {
+      background: #ddd;
+      color: #333;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    #close-cart:hover {
+      background: #ccc;
     }
   </style>
 </head>
@@ -270,12 +285,14 @@
       <input type="text" id="customer-phone" placeholder="Phone Number" required>
       <input type="text" id="customer-address" placeholder="Address" required>
       <button onclick="initiatePrepaidPayment()">Proceed to Prepaid Payment</button>
+      <button id="close-cart" onclick="closeCart()">Close Cart</button>
     </div>
   </div>
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     let cart = [];
+    const webAppUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL'; // Replace with your Google Apps Script Web App URL
 
     function addToCart(name, price) {
       const item = cart.find(i => i.name === name);
@@ -325,14 +342,20 @@
     }
 
     function openCart() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Add items from the menu to proceed.');
+        return;
+      }
       updateCartItems();
       document.getElementById('cart-modal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
     }
 
     function closeCart() {
-      document.getElementById('cart-modal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
+      if (confirm('Are you sure you want to close the cart? Your order progress will be saved.')) {
+        document.getElementById('cart-modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+      }
     }
 
     function initiatePrepaidPayment() {
@@ -344,21 +367,21 @@
       const phone = document.getElementById('customer-phone').value;
       const address = document.getElementById('customer-address').value;
       if (!name || !phone || !address) {
-        alert('Please fill all customer details.');
+        alert('Please fill all customer details to proceed with payment.');
         return;
       }
 
       const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0) * 100; // paise
 
       const options = {
-        key: 'rzp_test_gx1zMuo2qDYKHR	', // Replace with your key
+        key: 'rzp_test_gx1zMuo2qDYKHR',
         amount: total,
         currency: 'INR',
         name: 'TastyBites Cloud Kitchen',
         description: 'Prepaid Order',
         handler: function (response) {
           saveToGoogleSheets({ cart, total: total / 100, name, phone, address, paymentId: response.razorpay_payment_id });
-          alert('Payment successful! Order placed.');
+          alert('Payment successful! Your order has been placed. Thank you!');
           cart = [];
           updateCartCount();
           closeCart();
@@ -377,11 +400,11 @@
         payment: { paymentId: data.paymentId, amount: data.total, method: 'Prepaid', date: new Date().toISOString() }
       };
       console.log('Saving:', payload);
-      fetch('https://your-server-endpoint.com/save-to-sheets', {
+      fetch(webAppUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(res => res.json()).then(res => console.log('Saved')).catch(err => console.error(err));
+        body: JSON.stringify(payload),
+        redirect: 'follow' // To handle any redirects if needed
+      }).then(res => res.text()).then(res => console.log('Saved: ' + res)).catch(err => console.error(err));
     }
   </script>
 </body>
