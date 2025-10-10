@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TastyBites Cloud Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      width: 100px;
+      margin-bottom: 0.5rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #2c2c54;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item .content {
+      padding: 1rem;
+    }
+
+    .menu-item h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item p {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item .price {
+      font-weight: 600;
+      color: #ff6f61;
+      font-size: 1.2rem;
+    }
+
+    .menu-item button {
+      background: #2c2c54;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .menu-item button:hover {
+      background: #1a1a3a;
+    }
+
+    #cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6f61;
+      color: white;
+      padding: 1rem;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ffd700;
+      color: #2c2c54;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+    }
+
+    #cart-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      z-index: 200;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #cart-modal h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+      color: #2c2c54;
+    }
+
+    #cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity-controls button {
+      background: #ddd;
+      border: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #total-amount {
+      font-weight: 600;
+      margin: 1rem 0;
+    }
+
+    #customer-form {
+      margin-top: 1rem;
+    }
+
+    #customer-form input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    #customer-form button {
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    #customer-form button:hover {
+      background: #e55a50;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://via.placeholder.com/100?text=Logo" alt="TastyBites Logo">
+    <h1>TastyBites Cloud Kitchen</h1>
+  </header>
+
+  <section class="menu">
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Burger" alt="Burger">
+      <div class="content">
+        <h3>Classic Burger</h3>
+        <p>Juicy beef patty with fresh veggies.</p>
+        <span class="price">₹199</span>
+        <button onclick="addToCart('Classic Burger', 199)">Add to Cart</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Pizza" alt="Pizza">
+      <div class="content">
+        <h3>Margherita Pizza</h3>
+        <p>Fresh tomatoes and mozzarella.</p>
+        <span class="price">₹299</span>
+        <button onclick="addToCart('Margherita Pizza', 299)">Add to Cart</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="https://via.placeholder.com/300x200?text=Pasta" alt="Pasta">
+      <div class="content">
+        <h3>Creamy Pasta</h3>
+        <p>Rich creamy sauce with penne.</p>
+        <span class="price">₹249</span>
+        <button onclick="addToCart('Creamy Pasta', 249)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="cart" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <div id="cart-modal">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p id="total-amount">Total: ₹0</p>
+    <div id="customer-form">
+      <input type="text" id="customer-name" placeholder="Name" required>
+      <input type="text" id="customer-phone" placeholder="Phone Number" required>
+      <input type="text" id="customer-address" placeholder="Address" required>
+      <button onclick="initiatePrepaidPayment()">Proceed to Prepaid Payment</button>
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+      document.getElementById('cart-count').textContent = count;
+    }
+
+    function updateCartItems() {
+      const itemsDiv = document.getElementById('cart-items');
+      itemsDiv.innerHTML = '';
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.name} x ${item.quantity} - ₹${item.price * item.quantity}</span>
+          <div class="quantity-controls">
+            <button onclick="changeQuantity('${item.name}', -1)">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQuantity('${item.name}', 1)">+</button>
+          </div>
+        `;
+        itemsDiv.appendChild(div);
+      });
+      const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      document.getElementById('total-amount').textContent = `Total: ₹${total}`;
+    }
+
+    function changeQuantity(name, delta) {
+      const item = cart.find(i => i.name === name);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          cart = cart.filter(i => i.name !== name);
+        }
+        updateCartCount();
+        updateCartItems();
+      }
+    }
+
+    function openCart() {
+      updateCartItems();
+      document.getElementById('cart-modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function initiatePrepaidPayment() {
+      if (cart.length === 0) {
+        alert('Cart is empty!');
+        return;
+      }
+      const name = document.getElementById('customer-name').value;
+      const phone = document.getElementById('customer-phone').value;
+      const address = document.getElementById('customer-address').value;
+      if (!name || !phone || !address) {
+        alert('Please fill all customer details.');
+        return;
+      }
+
+      const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0) * 100; // paise
+
+      const options = {
+        key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your key
+        amount: total,
+        currency: 'INR',
+        name: 'TastyBites Cloud Kitchen',
+        description: 'Prepaid Order',
+        handler: function (response) {
+          saveToGoogleSheets({ cart, total: total / 100, name, phone, address, paymentId: response.razorpay_payment_id });
+          alert('Payment successful! Order placed.');
+          cart = [];
+          updateCartCount();
+          closeCart();
+        },
+        prefill: { name, contact: phone },
+        theme: { color: '#ff6f61' }
+      };
+      new Razorpay(options).open();
+    }
+
+    function saveToGoogleSheets(data) {
+      // Structure data for different sheets
+      const payload = {
+        customer: { name: data.name, phone: data.phone, address: data.address, date: new Date().toISOString() },
+        order: { items: data.cart, total: data.total, date: new Date().toISOString() },
+        payment: { paymentId: data.paymentId, amount: data.total, method: 'Prepaid', date: new Date().toISOString() }
+      };
+      console.log('Saving:', payload);
+      fetch('https://your-server-endpoint.com/save-to-sheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(res => res.json()).then(res => console.log('Saved')).catch(err => console.error(err));
+    }
+  </script>
+</body>
+</html>
