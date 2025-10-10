@@ -969,7 +969,8 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-          redirect: 'follow'
+          redirect: 'follow',
+          mode:'cors'
         });
         console.log(response)
         if (response.ok) {
