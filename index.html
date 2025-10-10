@@ -13,14 +13,12 @@
       box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
-
     body {
       background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
       color: #333;
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     header {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -32,23 +30,19 @@
       z-index: 10;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-
     header img {
       width: 70px;
       margin-right: 1rem;
       transition: transform 0.5s ease;
     }
-
     header img:hover {
       transform: rotate(360deg);
     }
-
     header h1 {
       font-family: 'Cinzel', serif;
       font-size: clamp(1.8rem, 5vw, 2rem);
       color: #2c2c54;
     }
-
     .hero {
       background: url('https://images.unsplash.com/photo-1555939594-6b7c55dd20f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
       height: 50vh;
@@ -59,7 +53,6 @@
       color: white;
       position: relative;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -69,24 +62,20 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.5);
     }
-
     .hero-content {
       z-index: 1;
       padding: 0 1rem;
     }
-
     .hero h1 {
       font-family: 'Cinzel', serif;
       font-size: clamp(2rem, 8vw, 3.2rem);
       margin-bottom: 1rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-
     .hero p {
       font-size: clamp(1rem, 3vw, 1.2rem);
       margin-bottom: 1.5rem;
     }
-
     .cta-btn {
       background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
@@ -101,7 +90,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .cta-btn::after {
       content: '';
       position: absolute;
@@ -114,23 +102,19 @@
       transform: translate(-50%, -50%);
       transition: width 0.4s, height 0.4s;
     }
-
     .cta-btn:hover::after {
       width: 200%;
       height: 200%;
     }
-
     .cta-btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(255, 111, 97, 0.6);
     }
-
     .search-container {
       max-width: 600px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
-
     #search-input {
       width: 100%;
       padding: 0.8rem 1rem 0.8rem 3rem;
@@ -142,12 +126,10 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       transition: box-shadow 0.3s;
     }
-
     #search-input:focus {
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
       outline: none;
     }
-
     .menu {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -156,7 +138,6 @@
       margin: 0 auto 3rem;
       padding: 0 1rem;
     }
-
     .menu-item {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
@@ -167,48 +148,40 @@
       cursor: pointer;
       position: relative;
     }
-
     .menu-item:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
-
     .menu-item img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       transition: transform 0.4s;
     }
-
     .menu-item:hover img {
       transform: scale(1.08);
     }
-
     .menu-item .content {
       padding: 1.2rem;
       text-align: center;
     }
-
     .menu-item h3 {
       font-family: 'Cinzel', serif;
       font-size: 1.5rem;
       color: #2c2c54;
       margin-bottom: 0.5rem;
     }
-
     .menu-item p {
       color: #666;
       font-size: 0.9rem;
       margin-bottom: 0.8rem;
     }
-
     .menu-item .price {
       font-weight: 700;
       color: #ff6f61;
       font-size: 1.3rem;
       margin-bottom: 0.8rem;
     }
-
     .menu-item button {
       background: linear-gradient(45deg, #2c2c54, #1a1a3a);
       color: white;
@@ -219,12 +192,10 @@
       font-weight: 600;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .menu-item button:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(44, 44, 84, 0.4);
     }
-
     #cart {
       position: fixed;
       bottom: 20px;
@@ -243,12 +214,10 @@
       transition: transform 0.3s, box-shadow 0.3s;
       z-index: 99;
     }
-
     #cart:hover {
       transform: scale(1.1);
       box-shadow: 0 8px 25px rgba(255, 111, 97, 0.6);
     }
-
     #cart-count {
       position: absolute;
       top: -5px;
@@ -264,7 +233,6 @@
       justify-content: center;
       font-weight: 700;
     }
-
     .overlay {
       display: none;
       position: fixed;
@@ -276,7 +244,6 @@
       z-index: 100;
       animation: fadeIn 0.3s ease;
     }
-
     #cart-modal {
       display: none;
       position: fixed;
@@ -293,7 +260,6 @@
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
       animation: slideUp 0.4s ease;
     }
-
     #cart-modal h2 {
       font-family: 'Cinzel', serif;
       font-size: 1.8rem;
@@ -301,13 +267,11 @@
       text-align: center;
       margin-bottom: 1.2rem;
     }
-
     #cart-items {
       max-height: 180px;
       overflow-y: auto;
       margin-bottom: 1.2rem;
     }
-
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -318,17 +282,14 @@
       margin-bottom: 0.5rem;
       transition: background 0.3s;
     }
-
     .cart-item:hover {
       background: rgba(255, 255, 255, 0.8);
     }
-
     .quantity-controls {
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
-
     .quantity-controls button {
       background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
@@ -340,11 +301,9 @@
       font-size: 0.9rem;
       transition: transform 0.3s;
     }
-
     .quantity-controls button:hover {
       transform: scale(1.1);
     }
-
     #total-amount {
       font-weight: 700;
       font-size: 1.2rem;
@@ -352,13 +311,11 @@
       text-align: right;
       margin: 1.2rem 0;
     }
-
     #payment-options {
       display: flex;
       gap: 0.8rem;
       margin-bottom: 1.2rem;
     }
-
     #payment-options label {
       flex: 1;
       padding: 0.7rem;
@@ -368,15 +325,12 @@
       text-align: center;
       transition: background 0.3s, color 0.3s;
     }
-
     #payment-options input[type="radio"] {
       display: none;
     }
-
     #payment-options label:hover {
       background: rgba(255, 255, 255, 0.8);
     }
-
     #payment-options input[type="radio"]:checked + span {
       background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
@@ -384,17 +338,14 @@
       padding: 0.7rem;
       border-radius: 10px;
     }
-
     #payment-options .highlight {
       color: #ffd700;
       font-weight: bold;
     }
-
     .form-group {
       position: relative;
       margin-bottom: 1rem;
     }
-
     #customer-form input {
       width: 100%;
       padding: 0.8rem 0.8rem 0.8rem 2.5rem;
@@ -404,12 +355,10 @@
       font-size: 0.9rem;
       transition: border-color 0.3s;
     }
-
     #customer-form input:focus {
       border-color: #ff6f61;
       outline: none;
     }
-
     .form-group i {
       position: absolute;
       left: 0.8rem;
@@ -418,15 +367,12 @@
       color: #999;
       transition: color 0.3s;
     }
-
     .form-group.valid i {
       color: #2ed573;
     }
-
     .form-group.invalid i {
       color: #ff4757;
     }
-
     #customer-form button {
       background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
@@ -439,17 +385,14 @@
       font-size: 1rem;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-
     #customer-form button:disabled {
       background: #ccc;
       cursor: not-allowed;
     }
-
     #customer-form button:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(255, 111, 97, 0.4);
     }
-
     #customer-form .spinner {
       display: none;
       border: 2px solid rgba(255, 255, 255, 0.3);
@@ -460,7 +403,6 @@
       animation: spin 1s linear infinite;
       margin-left: 0.5rem;
     }
-
     #close-cart {
       background: transparent;
       color: #2c2c54;
@@ -473,12 +415,10 @@
       transition: all 0.3s;
       font-size: 0.9rem;
     }
-
     #close-cart:hover {
       background: #2c2c54;
       color: white;
     }
-
     .error-message {
       color: #ff4757;
       background: rgba(255, 71, 87, 0.1);
@@ -489,7 +429,6 @@
       margin-bottom: 1rem;
       font-size: 0.85rem;
     }
-
     #toast {
       position: fixed;
       top: 15px;
@@ -504,7 +443,6 @@
       animation: slideInRight 0.5s ease;
       font-size: 0.9rem;
     }
-
     #success-modal {
       display: none;
       position: fixed;
@@ -522,101 +460,78 @@
       width: 90%;
       max-width: 450px;
     }
-
     #success-modal h3 {
       font-family: 'Cinzel', serif;
       font-size: 1.8rem;
       margin-bottom: 1rem;
     }
-
     #order-id-display {
       font-size: 1rem;
       margin-bottom: 1.5rem;
       word-break: break-all;
     }
-
-    #hidden-form {
-      display: none;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
     @keyframes slideInRight {
       from { transform: translateX(100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
     }
-
     @keyframes slideUp {
       from { transform: translate(-50%, 20px); opacity: 0; }
       to { transform: translate(-50%, -50%); opacity: 1; }
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     @media (max-width: 768px) {
       header {
         padding: 0.8rem 1rem;
       }
-
       header img {
         width: 50px;
       }
-
       .hero {
         height: 40vh;
       }
-
       .hero h1 {
         font-size: 2rem;
       }
-
       .hero p {
         font-size: 1rem;
       }
-
       .menu {
         grid-template-columns: 1fr;
         gap: 1rem;
       }
-
       .menu-item img {
         height: 180px;
       }
-
       #cart-modal {
         padding: 1.5rem;
         width: 95%;
       }
-
       #cart {
         width: 45px;
         height: 45px;
         font-size: 1rem;
       }
-
       #cart-count {
         width: 18px;
         height: 18px;
         font-size: 0.7rem;
       }
     }
-
     @media (max-width: 480px) {
       .hero h1 {
         font-size: 1.8rem;
       }
-
       .cta-btn {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
       }
-
       #payment-options {
         flex-direction: column;
         gap: 0.5rem;
@@ -716,10 +631,6 @@
     <button id="close-cart" onclick="closeCart()">Close</button>
   </div>
 
-  <form id="hidden-form" method="POST" action="https://script.google.com/macros/s/AKfycbzUXn0dvLUQ0zDm-nUFuUCX0AIC_dURCB_Bs8otqesW_QppYYXelw5I8CezsMi03CGfjw/exec">
-    <input type="hidden" name="payload" id="form-payload">
-  </form>
-
   <div id="success-modal">
     <h3>Order Confirmed!</h3>
     <p id="order-id-display"></p>
@@ -728,232 +639,158 @@
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbyPPQiF5IdV5bR-3oZk1OfKyFmSxUmlJWoxeum5fYxzYVzqXQKqEw-M87Qi0TX2H9nQxQ/exec';
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzUXn0dvLUQ0zDm-nUFuUCX0AIC_dURCB_Bs8otqesW_QppYYXelw5I8CezsMi03CGfjw/exec'; // Replace with Google Apps Script Web App URL
+
+    function scrollToMenu() {
+      document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
+    }
 
     function showToast(message) {
       const toast = document.getElementById('toast');
-      toast.innerHTML = `${message} <i class="fas fa-check"></i>`;
+      toast.textContent = message;
       toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      setTimeout(() => toast.style.display = 'none', 3000);
     }
 
     function addToCart(name, price) {
-      const item = cart.find(i => i.name === name);
-      if (item) {
-        item.quantity++;
+      const existingItem = cart.find(item => item.name === name && item.price === price);
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
       } else {
         cart.push({ name, price, quantity: 1 });
       }
       updateCartCount();
       saveCart();
-      showToast(`${name} added to cart! Click the cart to view or checkout.`);
+      showToast(`${name} added to cart!`);
     }
 
     function updateCartCount() {
-      const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
       document.getElementById('cart-count').textContent = count;
+      updateCartDisplay();
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
 
     function updateCartDisplay() {
-      updateCartItems();
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      cart.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+          <span>${item.name} (₹${item.price.toFixed(2)})</span>
+          <div class="quantity-controls">
+            <button onclick="updateQuantity(${index}, -1)">-</button>
+            <span>${item.quantity || 1}</span>
+            <button onclick="updateQuantity(${index}, 1)">+</button>
+          </div>
+        `;
+        cartItems.appendChild(itemDiv);
+      });
       updateTotal();
     }
 
-    function updateCartItems() {
-      const itemsDiv = document.getElementById('cart-items');
-      itemsDiv.innerHTML = '';
-      cart.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-          <span>${item.name} - ₹${item.price} x ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}</span>
-          <div class="quantity-controls">
-            <button onclick="changeQuantity('${item.name}', -1)"><i class="fas fa-minus"></i></button>
-            <span>${item.quantity}</span>
-            <button onclick="changeQuantity('${item.name}', 1)"><i class="fas fa-plus"></i></button>
-          </div>
-        `;
-        itemsDiv.appendChild(div);
-      });
+    function updateQuantity(index, change) {
+      cart[index].quantity = (cart[index].quantity || 1) + change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartCount();
+      saveCart();
     }
 
-    function changeQuantity(name, delta) {
-      const item = cart.find(i => i.name === name);
-      if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) {
-          cart = cart.filter(i => i.name !== name);
-        }
-        updateCartCount();
-        updateCartDisplay();
-        saveCart();
+    function updateTotal() {
+      let total = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      const paymentMethod = getPaymentMethod();
+      if (paymentMethod === 'COD') {
+        total *= 1.1; // 10% COD fee
+      } else {
+        total *= 0.9; // 10% Prepaid discount
       }
+      document.getElementById('total-amount').textContent = `Total: ₹${total.toFixed(2)}`;
+      return total;
     }
 
     function getPaymentMethod() {
       return document.querySelector('input[name="payment-method"]:checked').value;
     }
 
-    function updateTotal() {
-      const subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
-      const isCOD = getPaymentMethod() === 'COD';
-      const total = isCOD ? subtotal * 1.1 : subtotal;
-      document.getElementById('total-amount').textContent = `Total: ₹${total.toFixed(2)} ${isCOD ? '(incl. 10% COD fee)' : ''}`;
-      return total;
-    }
-
-    function generateOrderId() {
-      return 'ORDER-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-    }
-
-    function scrollToMenu() {
-      document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function filterMenu() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      document.querySelectorAll('.menu-item').forEach(item => {
-        const searchText = item.getAttribute('data-search').toLowerCase();
-        item.style.display = searchText.includes(query) ? 'block' : 'none';
-      });
-    }
-
     function openCart() {
-      if (cart.length === 0) {
-        showToast('Your cart is empty. Select dishes from the menu.');
-        return;
-      }
-      updateCartDisplay();
       document.getElementById('cart-modal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
-      document.getElementById('error-message').style.display = 'none';
-      document.getElementById('submit-btn').disabled = false;
-      document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
-      document.getElementById('order-id').value = generateOrderId();
-      document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
-        radio.addEventListener('change', updateTotal);
-      });
-      validateForm();
+      updateCartDisplay();
     }
 
     function closeCart() {
-      if (cart.length > 0 && !confirm('Close cart? Your items will be saved.')) {
-        return;
-      }
       document.getElementById('cart-modal').style.display = 'none';
       document.getElementById('overlay').style.display = 'none';
-      document.getElementById('error-message').style.display = 'none';
-      document.getElementById('submit-btn').disabled = false;
-      document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
-    }
-
-    function showError(message) {
-      const errorDiv = document.getElementById('error-message');
-      errorDiv.textContent = message;
-      errorDiv.style.display = 'block';
     }
 
     function showSuccess(orderId) {
       document.getElementById('order-id-display').textContent = `Order ID: ${orderId}`;
       document.getElementById('success-modal').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
       document.getElementById('cart-modal').style.display = 'none';
-      document.getElementById('overlay').style.display = 'none';
     }
 
     function closeSuccess() {
       document.getElementById('success-modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('customer-form').reset();
+    }
+
+    function showError(message) {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+      setTimeout(() => errorMessage.style.display = 'none', 5000);
     }
 
     function validateForm() {
       const name = document.getElementById('customer-name').value.trim();
       const phone = document.getElementById('customer-phone').value.trim();
       const address = document.getElementById('customer-address').value.trim();
-      const nameGroup = document.getElementById('customer-name').parentElement;
-      const phoneGroup = document.getElementById('customer-phone').parentElement;
-      const addressGroup = document.getElementById('customer-address').parentElement;
+      const nameField = document.getElementById('customer-name').parentElement;
+      const phoneField = document.getElementById('customer-phone').parentElement;
+      const addressField = document.getElementById('customer-address').parentElement;
 
-      nameGroup.classList.toggle('valid', name.length > 2);
-      nameGroup.classList.toggle('invalid', name && name.length <= 2);
-      phoneGroup.classList.toggle('valid', /^[0-9]{10}$/.test(phone));
-      phoneGroup.classList.toggle('invalid', phone && !/^[0-9]{10}$/.test(phone));
-      addressGroup.classList.toggle('valid', address.length > 5);
-      addressGroup.classList.toggle('invalid', address && address.length <= 5);
-    }
-
-    document.getElementById('customer-name').addEventListener('input', validateForm);
-    document.getElementById('customer-phone').addEventListener('input', validateForm);
-    document.getElementById('customer-address').addEventListener('input', validateForm);
-
-    function saveCart() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function handleSubmit() {
-      if (cart.length === 0) {
-        showError('Your cart is empty. Add items to proceed.');
-        return;
-      }
-      const name = document.getElementById('customer-name').value.trim();
-      const phone = document.getElementById('customer-phone').value.trim();
-      const address = document.getElementById('customer-address').value.trim();
-      if (!name || !phone || !address || name.length <= 2 || !/^[0-9]{10}$/.test(phone) || address.length <= 5) {
-        showError('Please fill all details correctly.');
-        return;
-      }
-
-      const submitBtn = document.getElementById('submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.querySelector('.spinner').style.display = 'inline-block';
-
-      const paymentMethod = getPaymentMethod();
-      const total = updateTotal();
-
-      if (paymentMethod === 'Prepaid') {
-        try {
-          const options = {
-            key: 'rzp_test_gx1zMuo2qDYKHR',
-            amount: total * 100,
-            currency: 'INR',
-            name: 'TastyBites Cloud Kitchen',
-            description: 'Prepaid Order',
-            handler: function (response) {
-              document.getElementById('payment-status').value = 'Completed';
-              document.getElementById('razorpay-payment-id').value = response.razorpay_payment_id;
-              submitToServer();
-            },
-            prefill: {
-              name: name,
-              contact: phone
-            },
-            theme: {
-              color: '#ff6f61'
-            },
-            modal: {
-              ondismiss: function () {
-                submitBtn.disabled = false;
-                submitBtn.querySelector('.spinner').style.display = 'none';
-                showToast('Payment window closed. Review your cart and try again.');
-              }
-            }
-          };
-          const rzp = new window.Razorpay(options);
-          rzp.on('payment.failed', function (response) {
-            showError(`Payment failed: ${response.error.description}. Please try again.`);
-            submitBtn.disabled = false;
-            submitBtn.querySelector('.spinner').style.display = 'none';
-          });
-          rzp.open();
-        } catch (error) {
-          showError('Error initiating payment. Please try again.');
-          submitBtn.disabled = false;
-          submitBtn.querySelector('.spinner').style.display = 'none';
-        }
+      let isValid = true;
+      if (!name) {
+        nameField.classList.add('invalid');
+        nameField.classList.remove('valid');
+        isValid = false;
       } else {
-        document.getElementById('payment-status').value = 'Pending';
-        document.getElementById('razorpay-payment-id').value = '';
-        submitToServer();
+        nameField.classList.add('valid');
+        nameField.classList.remove('invalid');
       }
+      if (!/^[0-9]{10}$/.test(phone)) {
+        phoneField.classList.add('invalid');
+        phoneField.classList.remove('valid');
+        isValid = false;
+      } else {
+        phoneField.classList.add('valid');
+        phoneField.classList.remove('invalid');
+      }
+      if (!address) {
+        addressField.classList.add('invalid');
+        addressField.classList.remove('valid');
+        isValid = false;
+      } else {
+        addressField.classList.add('valid');
+        addressField.classList.remove('invalid');
+      }
+      return isValid;
+    }
+
+    function getISTDate() {
+      const date = new Date();
+      const offset = 5.5 * 60 * 60 * 1000; // IST offset: +5:30
+      const istDate = new Date(date.getTime() + offset);
+      return istDate.toISOString().replace('Z', '+05:30');
     }
 
     function submitToServer() {
@@ -966,33 +803,93 @@
       const total = updateTotal();
       const paymentMethod = getPaymentMethod();
 
+      // Decode item names to ensure no '+' in payload
+      const decodedCart = cart.map(item => ({
+        name: decodeURIComponent(item.name.replace(/\+/g, ' ')),
+        price: item.price,
+        quantity: item.quantity || 1
+      }));
+
       const payload = {
-        customer: { name, phone, address, date: new Date().toISOString() },
-        order: { orderId, items: cart, total, date: new Date().toISOString() },
-        payment: { paymentId, amount: total, method: paymentMethod, status: paymentStatus, date: new Date().toISOString() }
+        customer: { name, phone, address, date: getISTDate() },
+        order: { orderId, items: decodedCart, total, date: getISTDate() },
+        payment: { paymentId, amount: total, method: paymentMethod, status: paymentStatus, date: getISTDate() }
       };
 
-      try {
-        console.log('Submitting payload:', JSON.stringify(payload));
-        const form = document.getElementById('hidden-form');
-        form.action = webAppUrl;
-        document.getElementById('form-payload').value = JSON.stringify(payload);
-        form.submit();
-        // Since form submission navigates away, we rely on the server to handle success
-        // Show success modal immediately (optimistic update)
+      document.getElementById('submit-btn').disabled = true;
+      document.getElementById('submit-btn').querySelector('.spinner').style.display = 'inline-block';
+
+      fetch(webAppUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors' // Avoid CORS issues
+      })
+      .then(response => {
         showSuccess(orderId);
         cart = [];
         updateCartCount();
         saveCart();
-      } catch (error) {
-        console.error('Form submission error:', error.message);
+        document.getElementById('submit-btn').disabled = false;
+        document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+      })
+      .catch(error => {
+        console.error('Submission error:', error.message);
         showError('Error submitting order. Please try again.');
         document.getElementById('submit-btn').disabled = false;
         document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+      });
+    }
+
+    function handleSubmit() {
+      if (!validateForm()) {
+        showError('Please fill in all required fields correctly.');
+        return;
+      }
+      if (cart.length === 0) {
+        showError('Your cart is empty!');
+        return;
+      }
+      document.getElementById('order-id').value = `ORDER-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+      const paymentMethod = getPaymentMethod();
+      if (paymentMethod === 'Prepaid') {
+        const total = updateTotal();
+        const options = {
+          key: 'rzp_test_gx1zMuo2qDYKHR',
+          amount: total * 100,
+          currency: 'INR',
+          name: 'TastyBites Cloud Kitchen',
+          description: 'Order Payment',
+          handler: function (response) {
+            document.getElementById('razorpay-payment-id').value = response.razorpay_payment_id;
+            document.getElementById('payment-status').value = 'Completed';
+            submitToServer();
+          },
+          prefill: {
+            name: document.getElementById('customer-name').value,
+            contact: document.getElementById('customer-phone').value
+          },
+          theme: {
+            color: '#ff6f61'
+          }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } else {
+        document.getElementById('payment-status').value = 'Pending';
+        submitToServer();
       }
     }
 
-    document.getElementById('search-input').addEventListener('input', filterMenu);
+    document.getElementById('search-input').addEventListener('input', function () {
+      const search = this.value.toLowerCase();
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const searchText = item.getAttribute('data-search').toLowerCase();
+        item.style.display = searchText.includes(search) || search === '' ? 'block' : 'none';
+      });
+    });
+
+    document.getElementById('payment-options').addEventListener('change', updateTotal);
     updateCartCount();
   </script>
 </body>
