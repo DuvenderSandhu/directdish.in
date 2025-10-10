@@ -716,7 +716,7 @@
     <button id="close-cart" onclick="closeCart()">Close</button>
   </div>
 
-  <form id="hidden-form" method="POST" action="https://script.google.com/macros/s/AKfycbzyquQhtUE4nIBOZiboyXGl0rWNNX6IR-YOUKYcIud2/dev">
+  <form id="hidden-form" method="POST" action="https://script.google.com/macros/s/AKfycbzUXn0dvLUQ0zDm-nUFuUCX0AIC_dURCB_Bs8otqesW_QppYYXelw5I8CezsMi03CGfjw/exec">
     <input type="hidden" name="payload" id="form-payload">
   </form>
 
@@ -729,7 +729,7 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzyquQhtUE4nIBOZiboyXGl0rWNNX6IR-YOUKYcIud2/dev'; // Replace with Google Apps Script Web App URL
+    const webAppUrl = 'https://script.google.com/macros/s/AKfycbzUXn0dvLUQ0zDm-nUFuUCX0AIC_dURCB_Bs8otqesW_QppYYXelw5I8CezsMi03CGfjw/exec'; // Replace with Google Apps Script Web App URL
 
     function showToast(message) {
       const toast = document.getElementById('toast');
