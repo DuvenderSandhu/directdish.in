@@ -535,6 +535,10 @@
       word-break: break-all;
     }
 
+    #hidden-form {
+      display: none;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -707,10 +711,14 @@
         <input type="text" id="customer-address" placeholder="Delivery Address" required>
       </div>
       <p class="error-message" id="error-message"></p>
-      <button type="button" id="submit-btn">Place Order <span class="spinner"></span></button>
+      <button type="button" id="submit-btn" onclick="handleSubmit()">Place Order <span class="spinner"></span></button>
     </form>
     <button id="close-cart" onclick="closeCart()">Close</button>
   </div>
+
+  <form id="hidden-form" method="POST" action="YOUR_APPS_SCRIPT_WEB_APP_URL">
+    <input type="hidden" name="payload" id="form-payload">
+  </form>
 
   <div id="success-modal">
     <h3>Order Confirmed!</h3>
@@ -721,7 +729,7 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const webAppUrl = 'https://script.google.com/macros/s/AKfycbwyTN9t9vj-_-xyEbCGVcuqf7BaQZu0OfXgc_Sj7Ics3nge8t4vJGQFp9WPVzZoEz2P-g/exec'; // Replace with Google Apps Script Web App URL
+    const webAppUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL'; // Replace with Google Apps Script Web App URL
 
     function showToast(message) {
       const toast = document.getElementById('toast');
@@ -881,7 +889,7 @@
       localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    async function handleSubmit() {
+    function handleSubmit() {
       if (cart.length === 0) {
         showError('Your cart is empty. Add items to proceed.');
         return;
@@ -909,10 +917,10 @@
             currency: 'INR',
             name: 'TastyBites Cloud Kitchen',
             description: 'Prepaid Order',
-            handler: async function (response) {
+            handler: function (response) {
               document.getElementById('payment-status').value = 'Completed';
               document.getElementById('razorpay-payment-id').value = response.razorpay_payment_id;
-              await submitToServer();
+              submitToServer();
             },
             prefill: {
               name: name,
@@ -944,11 +952,11 @@
       } else {
         document.getElementById('payment-status').value = 'Pending';
         document.getElementById('razorpay-payment-id').value = '';
-        await submitToServer();
+        submitToServer();
       }
     }
 
-    async function submitToServer() {
+    function submitToServer() {
       const name = document.getElementById('customer-name').value.trim();
       const phone = document.getElementById('customer-phone').value.trim();
       const address = document.getElementById('customer-address').value.trim();
@@ -965,35 +973,25 @@
       };
 
       try {
-        const response = await fetch(webAppUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          redirect: 'follow',
-          mode:'cors'
-        });
-        console.log(response)
-        if (response.ok) {
-          console.log(response)
-          showSuccess(orderId);
-          cart = [];
-          updateCartCount();
-          saveCart();
-        } else {
-          console.log(response)
-          showError('Error saving order. Please contact support.');
-          document.getElementById('submit-btn').disabled = false;
-          document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
-        }
+        console.log('Submitting payload:', JSON.stringify(payload));
+        const form = document.getElementById('hidden-form');
+        form.action = webAppUrl;
+        document.getElementById('form-payload').value = JSON.stringify(payload);
+        form.submit();
+        // Since form submission navigates away, we rely on the server to handle success
+        // Show success modal immediately (optimistic update)
+        showSuccess(orderId);
+        cart = [];
+        updateCartCount();
+        saveCart();
       } catch (error) {
-        showError('Network error while saving order. Please try again.');
+        console.error('Form submission error:', error.message);
+        showError('Error submitting order. Please try again.');
         document.getElementById('submit-btn').disabled = false;
         document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
-        console.error('Error:', error);
       }
     }
 
-    document.getElementById('submit-btn').addEventListener('click', handleSubmit);
     document.getElementById('search-input').addEventListener('input', filterMenu);
     updateCartCount();
   </script>
