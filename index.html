@@ -971,12 +971,15 @@
           body: JSON.stringify(payload),
           redirect: 'follow'
         });
+        console.log(response)
         if (response.ok) {
+          console.log(response)
           showSuccess(orderId);
           cart = [];
           updateCartCount();
           saveCart();
         } else {
+          console.log(response)
           showError('Error saving order. Please contact support.');
           document.getElementById('submit-btn').disabled = false;
           document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
