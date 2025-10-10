@@ -4,113 +4,249 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TastyBites Cloud Kitchen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
 
     body {
-      background-color: #f9f9f9;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
       color: #333;
-      padding: 2rem;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
     header {
-      text-align: center;
-      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     header img {
-      width: 100px;
-      margin-bottom: 0.5rem;
+      width: 70px;
+      margin-right: 1rem;
+      transition: transform 0.5s ease;
+    }
+
+    header img:hover {
+      transform: rotate(360deg);
     }
 
     header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 5vw, 2rem);
       color: #2c2c54;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1555939594-6b7c55dd20f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-btn {
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 111, 97, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s, height 0.4s;
+    }
+
+    .cta-btn:hover::after {
+      width: 200%;
+      height: 200%;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 111, 97, 0.6);
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 3rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.9) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>') no-repeat 1rem center;
+      background-size: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    #search-input:focus {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      outline: none;
     }
 
     .menu {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto 2rem;
+      max-width: 1400px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
     }
 
     .menu-item {
-      background: white;
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+      position: relative;
     }
 
     .menu-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
 
     .menu-item img {
       width: 100%;
       height: 200px;
       object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .menu-item:hover img {
+      transform: scale(1.08);
     }
 
     .menu-item .content {
-      padding: 1rem;
+      padding: 1.2rem;
+      text-align: center;
     }
 
     .menu-item h3 {
-      font-size: 1.4rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: #2c2c54;
       margin-bottom: 0.5rem;
     }
 
     .menu-item p {
       color: #666;
-      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
     }
 
     .menu-item .price {
-      font-weight: 600;
+      font-weight: 700;
       color: #ff6f61;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
     }
 
     .menu-item button {
-      background: #2c2c54;
+      background: linear-gradient(45deg, #2c2c54, #1a1a3a);
       color: white;
       border: none;
-      padding: 0.75rem;
-      width: 100%;
-      border-radius: 10px;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
       cursor: pointer;
-      margin-top: 1rem;
-      transition: background 0.3s;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .menu-item button:hover {
-      background: #1a1a3a;
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(44, 44, 84, 0.4);
     }
 
     #cart {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: #ff6f61;
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
-      padding: 1rem;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 99;
+    }
+
+    #cart:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(255, 111, 97, 0.6);
     }
 
     #cart-count {
@@ -126,6 +262,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: 700;
     }
 
     .overlay {
@@ -135,8 +272,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
       z-index: 100;
+      animation: fadeIn 0.3s ease;
     }
 
     #cart-modal {
@@ -145,154 +283,452 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: white;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
       padding: 2rem;
-      border-radius: 15px;
+      border-radius: 20px;
       width: 90%;
-      max-width: 500px;
+      max-width: 550px;
       z-index: 200;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.4s ease;
     }
 
     #cart-modal h2 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
       color: #2c2c54;
+      text-align: center;
+      margin-bottom: 1.2rem;
     }
 
     #cart-items {
-      max-height: 200px;
+      max-height: 180px;
       overflow-y: auto;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .cart-item {
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #eee;
+      align-items: center;
+      padding: 0.8rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      transition: background 0.3s;
+    }
+
+    .cart-item:hover {
+      background: rgba(255, 255, 255, 0.8);
     }
 
     .quantity-controls {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .quantity-controls button {
-      background: #ddd;
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
+      color: white;
       border: none;
-      width: 25px;
-      height: 25px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       cursor: pointer;
+      font-size: 0.9rem;
+      transition: transform 0.3s;
+    }
+
+    .quantity-controls button:hover {
+      transform: scale(1.1);
     }
 
     #total-amount {
-      font-weight: 600;
-      margin: 1rem 0;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #ff6f61;
+      text-align: right;
+      margin: 1.2rem 0;
     }
 
-    #customer-form {
-      margin-top: 1rem;
+    #payment-options {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    #payment-options label {
+      flex: 1;
+      padding: 0.7rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    #payment-options input[type="radio"] {
+      display: none;
+    }
+
+    #payment-options label:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    #payment-options input[type="radio"]:checked + span {
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
+      color: white;
+      display: block;
+      padding: 0.7rem;
+      border-radius: 10px;
+    }
+
+    #payment-options .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1rem;
     }
 
     #customer-form input {
       width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ddd;
+      padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+    }
+
+    #customer-form input:focus {
+      border-color: #ff6f61;
+      outline: none;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .form-group.valid i {
+      color: #2ed573;
+    }
+
+    .form-group.invalid i {
+      color: #ff4757;
     }
 
     #customer-form button {
-      background: #ff6f61;
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
       color: white;
       border: none;
-      padding: 0.75rem;
-      border-radius: 10px;
+      padding: 0.8rem;
+      border-radius: 50px;
       width: 100%;
       cursor: pointer;
-      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    #customer-form button:hover {
-      background: #e55a50;
+    #customer-form button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    #customer-form button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 111, 97, 0.4);
+    }
+
+    #customer-form .spinner {
+      display: none;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      animation: spin 1s linear infinite;
+      margin-left: 0.5rem;
     }
 
     #close-cart {
-      background: #ddd;
-      color: #333;
-      border: none;
-      padding: 0.75rem;
-      border-radius: 10px;
+      background: transparent;
+      color: #2c2c54;
+      border: 2px solid #2c2c54;
+      padding: 0.8rem;
+      border-radius: 50px;
       width: 100%;
       cursor: pointer;
+      margin-top: 0.8rem;
+      transition: all 0.3s;
+      font-size: 0.9rem;
     }
 
     #close-cart:hover {
-      background: #ccc;
+      background: #2c2c54;
+      color: white;
+    }
+
+    .error-message {
+      color: #ff4757;
+      background: rgba(255, 71, 87, 0.1);
+      padding: 0.6rem;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    #toast {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(45deg, #ff6f61, #ff8e53);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none;
+      animation: slideInRight 0.5s ease;
+      font-size: 0.9rem;
+    }
+
+    #success-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(45deg, #2ed573, #1e90ff);
+      color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      z-index: 300;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.4s ease;
+      width: 90%;
+      max-width: 450px;
+    }
+
+    #success-modal h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    #order-id-display {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      word-break: break-all;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translate(-50%, 20px); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0.8rem 1rem;
+      }
+
+      header img {
+        width: 50px;
+      }
+
+      .hero {
+        height: 40vh;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .menu {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .menu-item img {
+        height: 180px;
+      }
+
+      #cart-modal {
+        padding: 1.5rem;
+        width: 95%;
+      }
+
+      #cart {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
+
+      #cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .cta-btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      #payment-options {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://via.placeholder.com/100?text=Logo" alt="TastyBites Logo">
-    <h1>TastyBites Cloud Kitchen</h1>
+    <img src="https://via.placeholder.com/70?text=Logo" alt="TastyBites Logo">
+    <h1>TastyBites</h1>
   </header>
 
-  <section class="menu">
-    <div class="menu-item">
-      <img src="https://via.placeholder.com/300x200?text=Burger" alt="Burger">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Exquisite Culinary Delights</h1>
+      <p>Indulge in premium flavors delivered to your door</p>
+      <button class="cta-btn" onclick="scrollToMenu()">Explore Our Menu</button>
+    </div>
+  </section>
+
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search dishes...">
+  </div>
+
+  <section id="menu-section" class="menu">
+    <div class="menu-item" data-search="burger">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&q=80" alt="Burger">
       <div class="content">
         <h3>Classic Burger</h3>
-        <p>Juicy beef patty with fresh veggies.</p>
+        <p>Juicy beef patty with fresh veggies and signature sauce.</p>
         <span class="price">₹199</span>
-        <button onclick="addToCart('Classic Burger', 199)">Add to Cart</button>
+        <button onclick="addToCart('Classic Burger', 199)">Select to Order</button>
       </div>
     </div>
-    <div class="menu-item">
-      <img src="https://via.placeholder.com/300x200?text=Pizza" alt="Pizza">
+    <div class="menu-item" data-search="pizza">
+      <img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&q=80" alt="Pizza">
       <div class="content">
         <h3>Margherita Pizza</h3>
-        <p>Fresh tomatoes and mozzarella.</p>
+        <p>Fresh tomatoes, mozzarella, and basil on a crispy crust.</p>
         <span class="price">₹299</span>
-        <button onclick="addToCart('Margherita Pizza', 299)">Add to Cart</button>
+        <button onclick="addToCart('Margherita Pizza', 299)">Select to Order</button>
       </div>
     </div>
-    <div class="menu-item">
-      <img src="https://via.placeholder.com/300x200?text=Pasta" alt="Pasta">
+    <div class="menu-item" data-search="pasta">
+      <img src="https://images.unsplash.com/photo-1621996346565-effa5356f2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=320&q=80" alt="Pasta">
       <div class="content">
         <h3>Creamy Pasta</h3>
-        <p>Rich creamy sauce with penne.</p>
+        <p>Rich creamy sauce with al dente penne.</p>
         <span class="price">₹249</span>
-        <button onclick="addToCart('Creamy Pasta', 249)">Add to Cart</button>
+        <button onclick="addToCart('Creamy Pasta', 249)">Select to Order</button>
       </div>
     </div>
   </section>
 
   <div id="cart" onclick="openCart()">
-    🛒 <span id="cart-count">0</span>
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span>
   </div>
 
-  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <div id="toast"></div>
+
+  <div class="overlay" id="overlay"></div>
   <div id="cart-modal">
-    <h2>Your Cart</h2>
+    <h2>Your Order</h2>
     <div id="cart-items"></div>
     <p id="total-amount">Total: ₹0</p>
-    <div id="customer-form">
-      <input type="text" id="customer-name" placeholder="Name" required>
-      <input type="text" id="customer-phone" placeholder="Phone Number" required>
-      <input type="text" id="customer-address" placeholder="Address" required>
-      <button onclick="initiatePrepaidPayment()">Proceed to Prepaid Payment</button>
-      <button id="close-cart" onclick="closeCart()">Close Cart</button>
-    </div>
+    <form id="customer-form">
+      <input type="hidden" id="payment-status" value="Pending">
+      <input type="hidden" id="razorpay-payment-id" value="">
+      <input type="hidden" id="order-id" value="">
+      <div id="payment-options">
+        <label>
+          <input type="radio" name="payment-method" value="Prepaid" checked>
+          <span>Prepaid <i class="fas fa-star highlight"></i> (Save 10%!)</span>
+        </label>
+        <label>
+          <input type="radio" name="payment-method" value="COD">
+          <span>COD (+10% Fee)</span>
+        </label>
+      </div>
+      <div class="form-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="customer-name" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <i class="fas fa-phone"></i>
+        <input type="tel" id="customer-phone" placeholder="Phone Number" required>
+      </div>
+      <div class="form-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" id="customer-address" placeholder="Delivery Address" required>
+      </div>
+      <p class="error-message" id="error-message"></p>
+      <button type="button" id="submit-btn">Place Order <span class="spinner"></span></button>
+    </form>
+    <button id="close-cart" onclick="closeCart()">Close</button>
+  </div>
+
+  <div id="success-modal">
+    <h3>Order Confirmed!</h3>
+    <p id="order-id-display"></p>
+    <button class="cta-btn" onclick="closeSuccess()">Done</button>
   </div>
 
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script>
-    let cart = [];
-    const webAppUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL'; // Replace with your Google Apps Script Web App URL
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const webAppUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL'; // Replace with Google Apps Script Web App URL
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.innerHTML = `${message} <i class="fas fa-check"></i>`;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
 
     function addToCart(name, price) {
       const item = cart.find(i => i.name === name);
@@ -302,11 +738,18 @@
         cart.push({ name, price, quantity: 1 });
       }
       updateCartCount();
+      saveCart();
+      showToast(`${name} added to cart! Click the cart to view or checkout.`);
     }
 
     function updateCartCount() {
       const count = cart.reduce((sum, i) => sum + i.quantity, 0);
       document.getElementById('cart-count').textContent = count;
+    }
+
+    function updateCartDisplay() {
+      updateCartItems();
+      updateTotal();
     }
 
     function updateCartItems() {
@@ -316,17 +759,15 @@
         const div = document.createElement('div');
         div.className = 'cart-item';
         div.innerHTML = `
-          <span>${item.name} x ${item.quantity} - ₹${item.price * item.quantity}</span>
+          <span>${item.name} - ₹${item.price} x ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}</span>
           <div class="quantity-controls">
-            <button onclick="changeQuantity('${item.name}', -1)">-</button>
+            <button onclick="changeQuantity('${item.name}', -1)"><i class="fas fa-minus"></i></button>
             <span>${item.quantity}</span>
-            <button onclick="changeQuantity('${item.name}', 1)">+</button>
+            <button onclick="changeQuantity('${item.name}', 1)"><i class="fas fa-plus"></i></button>
           </div>
         `;
         itemsDiv.appendChild(div);
       });
-      const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
-      document.getElementById('total-amount').textContent = `Total: ₹${total}`;
     }
 
     function changeQuantity(name, delta) {
@@ -337,75 +778,220 @@
           cart = cart.filter(i => i.name !== name);
         }
         updateCartCount();
-        updateCartItems();
+        updateCartDisplay();
+        saveCart();
       }
+    }
+
+    function getPaymentMethod() {
+      return document.querySelector('input[name="payment-method"]:checked').value;
+    }
+
+    function updateTotal() {
+      const subtotal = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+      const isCOD = getPaymentMethod() === 'COD';
+      const total = isCOD ? subtotal * 1.1 : subtotal;
+      document.getElementById('total-amount').textContent = `Total: ₹${total.toFixed(2)} ${isCOD ? '(incl. 10% COD fee)' : ''}`;
+      return total;
+    }
+
+    function generateOrderId() {
+      return 'ORDER-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    }
+
+    function scrollToMenu() {
+      document.getElementById('menu-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterMenu() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const searchText = item.getAttribute('data-search').toLowerCase();
+        item.style.display = searchText.includes(query) ? 'block' : 'none';
+      });
     }
 
     function openCart() {
       if (cart.length === 0) {
-        alert('Your cart is empty. Add items from the menu to proceed.');
+        showToast('Your cart is empty. Select dishes from the menu.');
         return;
       }
-      updateCartItems();
+      updateCartDisplay();
       document.getElementById('cart-modal').style.display = 'block';
       document.getElementById('overlay').style.display = 'block';
+      document.getElementById('error-message').style.display = 'none';
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+      document.getElementById('order-id').value = generateOrderId();
+      document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+        radio.addEventListener('change', updateTotal);
+      });
+      validateForm();
     }
 
     function closeCart() {
-      if (confirm('Are you sure you want to close the cart? Your order progress will be saved.')) {
-        document.getElementById('cart-modal').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
+      if (cart.length > 0 && !confirm('Close cart? Your items will be saved.')) {
+        return;
+      }
+      document.getElementById('cart-modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('error-message').style.display = 'none';
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+    }
+
+    function showError(message) {
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+    }
+
+    function showSuccess(orderId) {
+      document.getElementById('order-id-display').textContent = `Order ID: ${orderId}`;
+      document.getElementById('success-modal').style.display = 'block';
+      document.getElementById('cart-modal').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function closeSuccess() {
+      document.getElementById('success-modal').style.display = 'none';
+    }
+
+    function validateForm() {
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+      const nameGroup = document.getElementById('customer-name').parentElement;
+      const phoneGroup = document.getElementById('customer-phone').parentElement;
+      const addressGroup = document.getElementById('customer-address').parentElement;
+
+      nameGroup.classList.toggle('valid', name.length > 2);
+      nameGroup.classList.toggle('invalid', name && name.length <= 2);
+      phoneGroup.classList.toggle('valid', /^[0-9]{10}$/.test(phone));
+      phoneGroup.classList.toggle('invalid', phone && !/^[0-9]{10}$/.test(phone));
+      addressGroup.classList.toggle('valid', address.length > 5);
+      addressGroup.classList.toggle('invalid', address && address.length <= 5);
+    }
+
+    document.getElementById('customer-name').addEventListener('input', validateForm);
+    document.getElementById('customer-phone').addEventListener('input', validateForm);
+    document.getElementById('customer-address').addEventListener('input', validateForm);
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    async function handleSubmit() {
+      if (cart.length === 0) {
+        showError('Your cart is empty. Add items to proceed.');
+        return;
+      }
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+      if (!name || !phone || !address || name.length <= 2 || !/^[0-9]{10}$/.test(phone) || address.length <= 5) {
+        showError('Please fill all details correctly.');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.spinner').style.display = 'inline-block';
+
+      const paymentMethod = getPaymentMethod();
+      const total = updateTotal();
+
+      if (paymentMethod === 'Prepaid') {
+        try {
+          const options = {
+            key: 'rzp_test_gx1zMuo2qDYKHR',
+            amount: total * 100,
+            currency: 'INR',
+            name: 'TastyBites Cloud Kitchen',
+            description: 'Prepaid Order',
+            handler: async function (response) {
+              document.getElementById('payment-status').value = 'Completed';
+              document.getElementById('razorpay-payment-id').value = response.razorpay_payment_id;
+              await submitToServer();
+            },
+            prefill: {
+              name: name,
+              contact: phone
+            },
+            theme: {
+              color: '#ff6f61'
+            },
+            modal: {
+              ondismiss: function () {
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.spinner').style.display = 'none';
+                showToast('Payment window closed. Review your cart and try again.');
+              }
+            }
+          };
+          const rzp = new window.Razorpay(options);
+          rzp.on('payment.failed', function (response) {
+            showError(`Payment failed: ${response.error.description}. Please try again.`);
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.spinner').style.display = 'none';
+          });
+          rzp.open();
+        } catch (error) {
+          showError('Error initiating payment. Please try again.');
+          submitBtn.disabled = false;
+          submitBtn.querySelector('.spinner').style.display = 'none';
+        }
+      } else {
+        document.getElementById('payment-status').value = 'Pending';
+        document.getElementById('razorpay-payment-id').value = '';
+        await submitToServer();
       }
     }
 
-    function initiatePrepaidPayment() {
-      if (cart.length === 0) {
-        alert('Cart is empty!');
-        return;
-      }
-      const name = document.getElementById('customer-name').value;
-      const phone = document.getElementById('customer-phone').value;
-      const address = document.getElementById('customer-address').value;
-      if (!name || !phone || !address) {
-        alert('Please fill all customer details to proceed with payment.');
-        return;
-      }
+    async function submitToServer() {
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+      const paymentStatus = document.getElementById('payment-status').value;
+      const paymentId = document.getElementById('razorpay-payment-id').value;
+      const orderId = document.getElementById('order-id').value;
+      const total = updateTotal();
+      const paymentMethod = getPaymentMethod();
 
-      const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0) * 100; // paise
+      const payload = {
+        customer: { name, phone, address, date: new Date().toISOString() },
+        order: { orderId, items: cart, total, date: new Date().toISOString() },
+        payment: { paymentId, amount: total, method: paymentMethod, status: paymentStatus, date: new Date().toISOString() }
+      };
 
-      const options = {
-        key: 'rzp_test_gx1zMuo2qDYKHR',
-        amount: total,
-        currency: 'INR',
-        name: 'TastyBites Cloud Kitchen',
-        description: 'Prepaid Order',
-        handler: function (response) {
-          saveToGoogleSheets({ cart, total: total / 100, name, phone, address, paymentId: response.razorpay_payment_id });
-          alert('Payment successful! Your order has been placed. Thank you!');
+      try {
+        const response = await fetch(webAppUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          redirect: 'follow'
+        });
+        if (response.ok) {
+          showSuccess(orderId);
           cart = [];
           updateCartCount();
-          closeCart();
-        },
-        prefill: { name, contact: phone },
-        theme: { color: '#ff6f61' }
-      };
-      new Razorpay(options).open();
+          saveCart();
+        } else {
+          showError('Error saving order. Please contact support.');
+          document.getElementById('submit-btn').disabled = false;
+          document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+        }
+      } catch (error) {
+        showError('Network error while saving order. Please try again.');
+        document.getElementById('submit-btn').disabled = false;
+        document.getElementById('submit-btn').querySelector('.spinner').style.display = 'none';
+        console.error('Error:', error);
+      }
     }
 
-    function saveToGoogleSheets(data) {
-      // Structure data for different sheets
-      const payload = {
-        customer: { name: data.name, phone: data.phone, address: data.address, date: new Date().toISOString() },
-        order: { items: data.cart, total: data.total, date: new Date().toISOString() },
-        payment: { paymentId: data.paymentId, amount: data.total, method: 'Prepaid', date: new Date().toISOString() }
-      };
-      console.log('Saving:', payload);
-      fetch(webAppUrl, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        redirect: 'follow' // To handle any redirects if needed
-      }).then(res => res.text()).then(res => console.log('Saved: ' + res)).catch(err => console.error(err));
-    }
+    document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+    document.getElementById('search-input').addEventListener('input', filterMenu);
+    updateCartCount();
   </script>
 </body>
 </html>
